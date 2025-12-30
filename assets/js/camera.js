@@ -123,8 +123,8 @@ function capturePhoto() {
         cropY = (videoHeight - cropHeight) / 2;
     }
 
-    canvas.width = 640;
-    canvas.height = 480;
+    canvas.width = 800;
+    canvas.height = 600;
 
     // Mirror the image (selfie mode)
     ctx.translate(canvas.width, 0);
