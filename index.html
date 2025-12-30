@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌊 Wisuda Kak Kana - Deep Sea Odyssey</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'deep-ocean': '#001f3f',
+                        'ocean-mid': '#003366',
+                        'turquoise': '#40E0D0',
+                        'coral': '#FF6B6B',
+                        'coral-pink': '#FF8FAB',
+                        'sand': '#F4D03F',
+                        'pearl': '#F8F9FA'
+                    },
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'montserrat': ['Montserrat', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- html2canvas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body class="font-poppins bg-deep-ocean text-pearl overflow-hidden">
+
+    <!-- ========== STAGE 1: THE ABYSSAL GATE ========== -->
+    <section id="stage-1" class="stage h-screen w-full flex items-center justify-center relative">
+        <!-- Animated Bubbles Background -->
+        <div class="bubbles-container absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+        </div>
+
+        <!-- Floating Particles -->
+        <div class="particles absolute inset-0 pointer-events-none"></div>
+
+        <!-- Main Content -->
+        <div class="gate-content z-10 text-center px-6" data-aos="fade-up" data-aos-duration="1500">
+            <!-- Decorative Icon -->
+            <div class="mb-8 animate-float">
+                <i data-lucide="anchor" class="w-20 h-20 mx-auto text-turquoise opacity-80"></i>
+            </div>
+
+            <!-- Title -->
+            <h1
+                class="text-4xl md:text-6xl font-montserrat font-extrabold mb-4 bg-gradient-to-r from-turquoise via-coral-pink to-sand bg-clip-text text-transparent">
+                The Deep Sea Odyssey
+            </h1>
+            <p class="text-lg md:text-xl text-turquoise/80 mb-12 font-light">
+                Sebuah petualangan bawah laut untuk sang Graduate ✨
+            </p>
+
+            <!-- Password Input -->
+            <div class="glass-panel max-w-md mx-auto p-8 rounded-3xl">
+                <p class="text-pearl/90 mb-6 text-lg">
+                    🐚 Masukkan kode akses untuk menyelam...
+                </p>
+                <div class="relative">
+                    <input type="text" id="password-input"
+                        class="w-full px-6 py-4 rounded-2xl bg-deep-ocean/50 border-2 border-turquoise/30 text-pearl text-center text-xl tracking-widest focus:outline-none focus:border-turquoise focus:ring-4 focus:ring-turquoise/20 transition-all placeholder:text-pearl/30"
+                        placeholder="• • • •" autocomplete="off">
+                    <button id="dive-btn"
+                        class="mt-6 w-full py-4 px-8 rounded-2xl bg-gradient-to-r from-turquoise to-coral font-semibold text-deep-ocean text-lg hover:scale-105 active:scale-95 transition-transform flex items-center justify-center gap-3">
+                        <i data-lucide="waves" class="w-5 h-5"></i>
+                        Mulai Menyelam
+                    </button>
+                </div>
+                <p id="password-error" class="text-coral mt-4 hidden animate-shake">
+                    ❌ Kode salah! Coba lagi ya...
+                </p>
+            </div>
+
+            <!-- Hint -->
+            <p class="mt-8 text-pearl/40 text-sm">
+                💡 Hint: Ketik kalau kamu udah siap!
+            </p>
+        </div>
+
+        <!-- Decorative Seaweed -->
+        <div
+            class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-ocean-mid/50 to-transparent pointer-events-none">
+        </div>
+    </section>
+
+    <!-- ========== STAGE 2: THE CORAL CONVERSATION ========== -->
+    <section id="stage-2" class="stage h-screen w-full flex items-center justify-center relative hidden-stage">
+        <!-- Ocean Gradient Background -->
+        <div class="absolute inset-0 bg-gradient-to-b from-deep-ocean via-ocean-mid to-deep-ocean"></div>
+
+        <!-- Coral Decorations -->
+        <div class="absolute bottom-0 left-0 right-0 h-48 pointer-events-none opacity-30">
+            <svg viewBox="0 0 1440 320" class="absolute bottom-0">
+                <path fill="#FF6B6B" fill-opacity="0.3"
+                    d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,250.7C960,235,1056,181,1152,170.7C1248,160,1344,192,1392,208L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+                </path>
+            </svg>
+        </div>
+
+        <!-- Chat Container -->
+        <div class="chat-container z-10 w-full max-w-2xl mx-auto px-4" data-aos="zoom-in" data-aos-duration="800">
+            <!-- Chat Bubble Design -->
+            <div class="glass-panel rounded-3xl p-6 md:p-8 relative overflow-hidden">
+                <!-- Header -->
+                <div class="flex items-center gap-4 mb-6 pb-4 border-b border-turquoise/20">
+                    <div
+                        class="w-14 h-14 rounded-full bg-gradient-to-br from-turquoise to-coral flex items-center justify-center">
+                        <i data-lucide="fish" class="w-7 h-7 text-deep-ocean"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-montserrat font-bold text-xl text-turquoise">Nemo si Ikan Bijak</h3>
+                        <p class="text-pearl/60 text-sm flex items-center gap-2">
+                            <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                            Online • The Memory Stream Quest
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Messages Container -->
+                <div id="chat-messages" class="h-64 md:h-80 overflow-y-auto space-y-4 pr-2 custom-scrollbar">
+                    <!-- Messages will be injected here -->
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="mt-6">
+                    <div class="flex justify-between text-sm mb-2">
+                        <span class="text-pearl/60">Progress Cerita</span>
+                        <span id="word-count" class="text-turquoise font-semibold">0/25 kata</span>
+                    </div>
+                    <div class="h-3 bg-deep-ocean/50 rounded-full overflow-hidden">
+                        <div id="progress-bar"
+                            class="h-full bg-gradient-to-r from-turquoise to-coral rounded-full transition-all duration-500"
+                            style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <!-- Input Area -->
+                <div class="mt-4 flex gap-3">
+                    <input type="text" id="chat-input"
+                        class="flex-1 px-5 py-3 rounded-2xl bg-deep-ocean/50 border border-turquoise/30 text-pearl focus:outline-none focus:border-turquoise transition-all placeholder:text-pearl/40"
+                        placeholder="Ketik ceritamu di sini...">
+                    <button id="send-btn"
+                        class="px-6 py-3 rounded-2xl bg-gradient-to-r from-turquoise to-coral text-deep-ocean font-semibold hover:scale-105 active:scale-95 transition-transform">
+                        <i data-lucide="send" class="w-5 h-5"></i>
+                    </button>
+                </div>
+
+                <!-- Next Stage Button (Hidden initially) -->
+                <button id="to-photobox-btn"
+                    class="hidden mt-6 w-full py-4 rounded-2xl bg-gradient-to-r from-coral to-coral-pink text-white font-bold text-lg hover:scale-105 active:scale-95 transition-transform animate-pulse-glow">
+                    🎉 Yeay! Lanjut ke Photobox →
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== STAGE 3: THE NAUTICAL PHOTOBOX ========== -->
+    <section id="stage-3" class="stage min-h-screen w-full flex items-center justify-center relative py-8 hidden-stage">
+        <!-- Background -->
+        <div class="absolute inset-0 bg-gradient-to-br from-deep-ocean via-ocean-mid to-deep-ocean"></div>
+
+        <!-- Photobox Container -->
+        <div class="photobox-wrapper z-10 w-full max-w-6xl mx-auto px-4" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-montserrat font-bold text-center mb-2 text-turquoise">
+                📸 Nautical Photobox
+            </h2>
+            <p class="text-center text-pearl/60 mb-8">Ambil 3 foto terbaikmu untuk kenang-kenangan!</p>
+
+            <div class="grid md:grid-cols-2 gap-8 items-start">
+                <!-- Camera Feed Side -->
+                <div class="glass-panel rounded-3xl p-6">
+                    <h3 class="font-semibold text-lg mb-4 flex items-center gap-2">
+                        <i data-lucide="camera" class="w-5 h-5 text-coral"></i>
+                        Kamera
+                    </h3>
+
+                    <!-- Video Feed -->
+                    <div class="relative rounded-2xl overflow-hidden bg-deep-ocean aspect-[4/3]">
+                        <video id="camera-feed" autoplay playsinline class="w-full h-full object-cover"></video>
+
+                        <!-- Flash Effect -->
+                        <div id="flash-overlay"
+                            class="absolute inset-0 bg-white opacity-0 pointer-events-none transition-opacity"></div>
+
+                        <!-- Countdown Overlay -->
+                        <div id="countdown-overlay"
+                            class="absolute inset-0 flex items-center justify-center bg-deep-ocean/70 hidden">
+                            <span id="countdown-number"
+                                class="text-8xl font-montserrat font-bold text-turquoise animate-ping-slow">3</span>
+                        </div>
+
+                        <!-- Camera Error Message -->
+                        <div id="camera-error"
+                            class="absolute inset-0 flex flex-col items-center justify-center bg-deep-ocean hidden">
+                            <i data-lucide="camera-off" class="w-16 h-16 text-coral mb-4"></i>
+                            <p class="text-pearl/80 text-center px-4">Kamera tidak tersedia.<br>Coba izinkan akses
+                                kamera ya!</p>
+                        </div>
+                    </div>
+
+                    <!-- Capture Button -->
+                    <button id="capture-btn"
+                        class="mt-6 w-full py-4 rounded-2xl bg-gradient-to-r from-coral to-coral-pink text-white font-bold text-lg hover:scale-105 active:scale-95 transition-transform flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100">
+                        <i data-lucide="aperture" class="w-6 h-6"></i>
+                        <span id="capture-btn-text">Ambil Foto 1</span>
+                    </button>
+
+                    <!-- Photo Counter -->
+                    <div class="flex justify-center gap-3 mt-4">
+                        <div id="photo-dot-1"
+                            class="w-4 h-4 rounded-full bg-deep-ocean border-2 border-turquoise/50 transition-all">
+                        </div>
+                        <div id="photo-dot-2"
+                            class="w-4 h-4 rounded-full bg-deep-ocean border-2 border-turquoise/50 transition-all">
+                        </div>
+                        <div id="photo-dot-3"
+                            class="w-4 h-4 rounded-full bg-deep-ocean border-2 border-turquoise/50 transition-all">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Preview Side -->
+                <div class="glass-panel rounded-3xl p-6">
+                    <h3 class="font-semibold text-lg mb-4 flex items-center gap-2">
+                        <i data-lucide="image" class="w-5 h-5 text-turquoise"></i>
+                        Preview Hasil
+                    </h3>
+
+                    <!-- Photobox Preview Container -->
+                    <div id="photobox-container" class="relative mx-auto bg-deep-ocean rounded-2xl overflow-hidden"
+                        style="width: 300px; height: 450px;">
+                        <!-- Captured photos will be positioned here -->
+                        <img id="captured-photo-1" src="" alt="" class="absolute opacity-0 object-cover"
+                            style="left: 22px; top: 22px; width: 256px; height: 128px;">
+                        <img id="captured-photo-2" src="" alt="" class="absolute opacity-0 object-cover"
+                            style="left: 22px; top: 160px; width: 256px; height: 128px;">
+                        <img id="captured-photo-3" src="" alt="" class="absolute opacity-0 object-cover"
+                            style="left: 22px; top: 298px; width: 256px; height: 128px;">
+
+                        <!-- Template Overlay -->
+                        <img id="photobox-template" src="assets/img/KANAAAAAAAA.png" alt="Photobox Template"
+                            class="absolute inset-0 w-full h-full object-contain pointer-events-none"
+                            style="z-index: 10;">
+
+                        <!-- Placeholder Text -->
+                        <div id="photobox-placeholder" class="absolute inset-0 flex items-center justify-center">
+                            <p class="text-pearl/30 text-center px-4">Foto-foto kamu akan muncul di sini ✨</p>
+                        </div>
+                    </div>
+
+                    <!-- Generate Button -->
+                    <button id="generate-btn"
+                        class="hidden mt-6 w-full py-4 rounded-2xl bg-gradient-to-r from-turquoise to-coral text-deep-ocean font-bold text-lg hover:scale-105 active:scale-95 transition-transform flex items-center justify-center gap-3">
+                        <i data-lucide="sparkles" class="w-6 h-6"></i>
+                        Buat Kenangan!
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== STAGE 4: THE TREASURE CHEST ========== -->
+    <section id="stage-4"
+        class="stage min-h-screen w-full flex items-center justify-center relative py-12 hidden-stage">
+        <!-- Celebration Background -->
+        <div class="absolute inset-0 bg-gradient-to-b from-deep-ocean via-ocean-mid to-deep-ocean"></div>
+
+        <!-- Treasure Content -->
+        <div class="treasure-content z-10 w-full max-w-4xl mx-auto px-4" data-aos="zoom-in" data-aos-duration="1000">
+            <!-- Title -->
+            <div class="text-center mb-10">
+                <h2
+                    class="text-4xl md:text-5xl font-montserrat font-extrabold mb-4 bg-gradient-to-r from-sand via-coral-pink to-turquoise bg-clip-text text-transparent">
+                    🎊 Selamat Wisuda, Kak! 🎊
+                </h2>
+                <p class="text-xl text-pearl/80">Petualangan bawah laut ini telah sampai di tujuan akhir...</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Photobox Result -->
+                <div class="glass-panel rounded-3xl p-6 text-center">
+                    <h3
+                        class="font-montserrat font-bold text-xl mb-4 text-turquoise flex items-center justify-center gap-2">
+                        <i data-lucide="image" class="w-6 h-6"></i>
+                        Kenangan Terfoto
+                    </h3>
+                    <div id="final-photobox" class="mx-auto rounded-2xl overflow-hidden shadow-2xl">
+                        <!-- Final merged image will appear here -->
+                        <p class="text-pearl/40 py-20">Memuat hasil...</p>
+                    </div>
+                    <button id="download-btn"
+                        class="mt-6 w-full py-4 rounded-2xl bg-gradient-to-r from-sand to-coral text-deep-ocean font-bold text-lg hover:scale-105 active:scale-95 transition-transform flex items-center justify-center gap-3">
+                        <i data-lucide="download" class="w-6 h-6"></i>
+                        Download Kenangan
+                    </button>
+                </div>
+
+                <!-- Memories -->
+                <div class="glass-panel rounded-3xl p-6">
+                    <h3
+                        class="font-montserrat font-bold text-xl mb-4 text-coral-pink flex items-center justify-center gap-2">
+                        <i data-lucide="heart" class="w-6 h-6"></i>
+                        Cerita dari Hati
+                    </h3>
+                    <div id="memories-container"
+                        class="bg-deep-ocean/30 rounded-2xl p-6 max-h-64 overflow-y-auto custom-scrollbar">
+                        <!-- Chat memories will be displayed here -->
+                        <p class="text-pearl/60 italic">"Loading kenangan..."</p>
+                    </div>
+
+                    <!-- Personal Message -->
+                    <div class="mt-6 pt-6 border-t border-turquoise/20">
+                        <p class="text-pearl/90 leading-relaxed">
+                            Kak, selamat ya udah berhasil menyelesaikan perjalanan kuliahmu! 🎓
+                        </p>
+                        <p class="text-pearl/90 leading-relaxed mt-3">
+                            Semua perjuanganmu, begadangnya, stresnya, semuanya akhirnya terbayar. Aku bangga banget
+                            sama kakak!
+                        </p>
+                        <p class="text-pearl/90 leading-relaxed mt-3">
+                            Semoga ilmu yang kakak dapat bisa jadi bekal untuk masa depan yang lebih cerah. Tetap
+                            semangat dan jangan lupa bahagia! 💙
+                        </p>
+                        <p class="text-right mt-4 text-turquoise font-semibold">
+                            — Dengan sayang, Adikmu 💕
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Replay Button -->
+            <div class="text-center mt-10">
+                <button id="replay-btn"
+                    class="px-8 py-3 rounded-full border-2 border-turquoise/50 text-turquoise hover:bg-turquoise/10 transition-all">
+                    🔄 Mulai Lagi dari Awal
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript Files -->
+    <script src="assets/js/chat-logic.js"></script>
+    <script src="assets/js/camera.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>
