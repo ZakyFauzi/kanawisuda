@@ -15,9 +15,9 @@ const chatState = {
 // Bot Messages Queue
 const botResponses = {
     initial: [
-        "Halo Kak! 👋 Aku Nemo, ikan bijak dari dasar laut.",
-        "Sebelum kita ke permukaan, aku mau dengerin ceritamu dulu nih...",
-        "Ceritain dong satu momen paling 'berombak' (susah atau seru) selama kuliah di Perairan? 🌊"
+        "Assalamualaikum kana, anggap saja ini zaky dalam bentuk ikan :v.",
+        "barakallah fi ilmik, btw btwwwwww cerita dulu donggg",
+        "Ceritain dong satu momen paling asik, seru, memorable, apalah itu"
     ],
     encouragements: [
         "Wah seru tuh! Terus terus, ceritain lagi dong! 🐟",
@@ -34,9 +34,9 @@ const botResponses = {
         "Woohoo hampir selesai! Satu cerita lagi yuk!"
     ],
     success: [
-        "YEAAAY! 🎉 Cerita kamu keren banget!",
-        "Makasih udah berbagi kenangan sama aku!",
-        "Sekarang saatnya abadikan momen ini di Photobox! 📸"
+        "YEAAAY! udah sih itu aja!",
+        "Makasih udah cerita wwkwwk!",
+        "Sekarang saatnya Photobox ala ala wkwkw! 📸"
     ]
 };
 
@@ -88,18 +88,18 @@ function startConversation() {
 function addBotMessage(text) {
     // Show typing indicator first
     showTypingIndicator();
-    
+
     setTimeout(() => {
         removeTypingIndicator();
-        
+
         const messageDiv = document.createElement('div');
         messageDiv.className = 'chat-message bot';
         messageDiv.innerHTML = `<p>${text}</p>`;
         chatMessagesContainer.appendChild(messageDiv);
-        
+
         // Scroll to bottom
         chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
-        
+
         chatState.messages.push({ type: 'bot', text });
     }, 800);
 }
@@ -110,10 +110,10 @@ function addUserMessage(text) {
     messageDiv.className = 'chat-message user';
     messageDiv.innerHTML = `<p>${text}</p>`;
     chatMessagesContainer.appendChild(messageDiv);
-    
+
     // Scroll to bottom
     chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
-    
+
     chatState.messages.push({ type: 'user', text });
     chatState.userMessages.push(text);
 }
@@ -142,18 +142,18 @@ function removeTypingIndicator() {
 function handleSendMessage() {
     const text = chatInput.value.trim();
     if (!text || chatState.isComplete) return;
-    
+
     // Add user message
     addUserMessage(text);
     chatInput.value = '';
-    
+
     // Count words
     const words = text.split(/\s+/).filter(word => word.length > 0);
     chatState.totalWordCount += words.length;
-    
+
     // Update progress
     updateProgress();
-    
+
     // Check if complete
     if (chatState.totalWordCount >= chatState.targetWordCount) {
         handleQuestComplete();
@@ -179,7 +179,7 @@ function updateProgress() {
     const progress = Math.min((chatState.totalWordCount / chatState.targetWordCount) * 100, 100);
     progressBar.style.width = `${progress}%`;
     wordCountDisplay.textContent = `${chatState.totalWordCount}/${chatState.targetWordCount} kata`;
-    
+
     // Change color when almost complete
     if (progress >= 80) {
         progressBar.classList.add('animate-pulse');
@@ -191,11 +191,11 @@ function handleQuestComplete() {
     chatState.isComplete = true;
     chatInput.disabled = true;
     sendBtn.disabled = true;
-    
+
     // Progress bar to 100%
     progressBar.style.width = '100%';
     wordCountDisplay.textContent = `✅ ${chatState.totalWordCount} kata - Selesai!`;
-    
+
     // Send success messages
     let delay = 500;
     botResponses.success.forEach((msg, index) => {
@@ -203,12 +203,12 @@ function handleQuestComplete() {
             addBotMessage(msg);
         }, delay + (index * 1500));
     });
-    
+
     // Show photobox button after messages
     setTimeout(() => {
         toPhotoboxBtn.classList.remove('hidden');
         toPhotoboxBtn.classList.add('success-bounce');
-        
+
         // Trigger confetti
         if (typeof confetti !== 'undefined') {
             confetti({
@@ -233,7 +233,7 @@ function resetChat() {
     chatState.totalWordCount = 0;
     chatState.isComplete = false;
     chatState.isTyping = false;
-    
+
     if (chatMessagesContainer) {
         chatMessagesContainer.innerHTML = '';
     }
